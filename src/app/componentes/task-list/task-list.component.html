@@ -1,0 +1,33 @@
+<div class="task-container">
+  <h1>Lista de Tareas</h1>
+  <button routerLink="/tasks/new" class="add-task-button">Agregar Tarea</button>
+
+  <div *ngIf="errorMessage" class="error">{{ errorMessage }}</div>
+
+  <table *ngIf="tasks.length > 0; else noTasks" class="task-table">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Título</th>
+        <th>Descripción</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let task of tasks">
+        <td>{{ task.id }}</td>
+        <td>{{ task.title }}</td>
+        <td>{{ task.description }}</td>
+        <td>
+          <button>Editar</button>
+          <button (click)="deleteTask(task.id)">Eliminar</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <ng-template #noTasks>
+    <p>No hay tareas disponibles. Agrega una nueva tarea.</p>
+  </ng-template>
+</div>
+
